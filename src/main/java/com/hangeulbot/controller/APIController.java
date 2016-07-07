@@ -2,6 +2,7 @@ package com.hangeulbot.controller;
 
 import com.hangeulbot.service.APIService;
 import com.hangeulbot.vo.HangeulbotDevice;
+import com.hangeulbot.vo.HangeulbotUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +27,24 @@ public class APIController {
 
         return new ResponseEntity<HangeulbotDevice>(hangeulbotDevice, HttpStatus.OK);
     }
-    @RequestMapping(value="get/isDuplicated/{emailId}",method = RequestMethod.GET)
-    public boolean isDuplicatedByEmailId(@PathVariable String memberId){
+
+
+    @RequestMapping(value="get/isDuplicated/{userId}",method = RequestMethod.GET)
+    public boolean isDuplicatedByEmailId(@PathVariable String userId){
+
+        System.out.println("현재 API Server 로 넘어오는 이메일 값"+ userId);
+
         boolean flag=false;
-        if(apiService.isDuplicatedByEmailId(memberId)){
+        if(apiService.isDuplicatedByEmailId(userId)){
             flag=true;
         }
         return flag;
+    }
+
+    @RequestMapping(value = "save/userInfoAndDeviceInfo",method = RequestMethod.POST)
+    public boolean userInfoAndDeviceInfo(@RequestBody HangeulbotUser hangeulbotUser){
+        System.out.println("Hangeulbot Device Info " + hangeulbotUser.getHangeulbotDevices());
+        return false;
     }
 
 

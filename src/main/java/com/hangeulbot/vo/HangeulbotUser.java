@@ -20,10 +20,21 @@ public class HangeulbotUser {
     private int idx;
 
     @Id
-    @Column(name="user_id")
+    @Column(name="user_id",length = 30)
     @Setter
     @Getter
     private String userId;
+
+    @Column(name="password",length = 100,nullable = false)
+    @Setter
+    @Getter
+    private String password;
+
+
+    @Column(name="phone_number",length = 20,nullable = false)
+    @Setter
+    @Getter
+    private String phoneNumber;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
     @Setter

@@ -26,6 +26,11 @@ public class HangeulbotDevice {
     @Getter
     private String deviceId;
 
+    @Column(name="device_name")
+    @Setter
+    @Getter
+    private String deviceName;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     @Setter
