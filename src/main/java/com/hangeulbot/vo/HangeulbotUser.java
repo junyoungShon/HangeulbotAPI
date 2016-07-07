@@ -23,7 +23,7 @@ public class HangeulbotUser {
     @Column(name="user_id")
     @Setter
     @Getter
-    private String user_id;
+    private String userId;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
     @Setter
