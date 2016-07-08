@@ -1,5 +1,6 @@
 package com.hangeulbot.service;
 
+import com.hangeulbot.vo.HangeulbotDevice;
 import com.hangeulbot.vo.HangeulbotUser;
 import org.springframework.stereotype.Service;
 
@@ -9,5 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface APIService {
     boolean isDuplicatedByEmailId(String userId);
-    HangeulbotUser saveUserInfoAndDeviceInfo(HangeulbotUser hangeulbotUser);
+
+    HangeulbotUser putHangeulbotDeviceInfoAndHangeulbotUserInfo(HangeulbotDevice hangeulbotDevice);
 }

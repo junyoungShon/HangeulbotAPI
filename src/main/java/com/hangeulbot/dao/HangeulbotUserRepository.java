@@ -13,4 +13,5 @@ import static javafx.scene.input.KeyCode.T;
 public interface HangeulbotUserRepository extends JpaRepository<HangeulbotUser, String> {
     HangeulbotUser findByUserId(String userId);
 
+
 }

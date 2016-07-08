@@ -2,6 +2,7 @@ package com.hangeulbot.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,7 +26,7 @@ public class HangeulbotUser {
     @Getter
     private String userId;
 
-    @Column(name="password",length = 100,nullable = false)
+    @Column(name="password",nullable = false)
     @Setter
     @Getter
     private String password;
@@ -36,15 +37,16 @@ public class HangeulbotUser {
     @Getter
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
     @Setter
     @Getter
-    private List<HangeulbotDevice> hangeulbotDevices;
+    private HangeulbotDevice hangeulbotDevice;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
     @Setter
     @Getter
     private List<HangeulbotChild> hangeulbotChildren;
+
 
     public HangeulbotUser() {}
 

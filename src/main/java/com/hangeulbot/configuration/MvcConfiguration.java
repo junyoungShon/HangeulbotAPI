@@ -1,15 +1,15 @@
 package com.hangeulbot.configuration;
 
+import com.hangeulbot.interceptor.AppInterceptor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
@@ -40,10 +40,18 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
     @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AppInterceptor());
+    }
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/static/**")) {
-            System.out.println("여기에 오냐 ㅋㅋㅋ");
             registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         }
+    }
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
     }
 }

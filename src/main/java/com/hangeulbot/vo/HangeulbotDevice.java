@@ -2,6 +2,7 @@ package com.hangeulbot.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
  * Created by jyson on 2016. 7. 6..
  */
 @Entity
+@ToString(callSuper=true, includeFieldNames=true)
 public class HangeulbotDevice {
 
 
