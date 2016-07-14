@@ -1,5 +1,6 @@
 package com.hangeulbot.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -33,10 +34,11 @@ public class HangeulbotDevice {
     @Getter
     private String deviceName;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
+
+    @OneToOne
     @Setter
     @Getter
+    @JoinColumn(name="user_id")
     private HangeulbotUser hangeulbotUser;
 
     public HangeulbotDevice() {}

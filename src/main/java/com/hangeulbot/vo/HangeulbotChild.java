@@ -36,11 +36,15 @@ public class HangeulbotChild {
     @Getter
     private int childNum;
 
-    @OneToOne
-    @JoinColumn(name="user_id")
+    @Column
     @Setter
     @Getter
-    private HangeulbotUser hangeulbotUser;
+    private String childPhoto;
+
+    @Setter
+    @Getter
+    @Column(name="user_id")
+    private String userId;
 
     public HangeulbotChild() {}
 

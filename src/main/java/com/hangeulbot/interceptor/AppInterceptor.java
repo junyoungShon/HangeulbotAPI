@@ -24,8 +24,10 @@ public class AppInterceptor extends HandlerInterceptorAdapter{
 		Boolean flag = true;
         System.out.println("AppInterceptor.preHandle : "+req.getRequestURI());
         String userRequestUri = req.getRequestURI();
-        if(userRequestUri.equals("/userInfo")||
-                userRequestUri.equals("/error")||userRequestUri.startsWith("/isDuplicated")||userRequestUri.equals("/deviceInfoAndUserInfo")){
+
+        if(userRequestUri.equals("/userInfo")||userRequestUri.startsWith("/userInfoByDeviceId")||
+                userRequestUri.equals("/error")||userRequestUri.startsWith("/isDuplicated")||
+                userRequestUri.equals("/deviceInfoAndUserInfo")){
             return flag;
         }else{
             final HttpServletRequest request = (HttpServletRequest) req;

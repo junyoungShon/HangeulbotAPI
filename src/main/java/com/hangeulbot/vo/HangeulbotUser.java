@@ -37,14 +37,16 @@ public class HangeulbotUser {
     @Getter
     private String phoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
+    @OneToOne(cascade = CascadeType.ALL)
     @Setter
     @Getter
+    @JoinColumn(name = "device_id")
     private HangeulbotDevice hangeulbotDevice;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "hangeulbotUser")
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @Setter
     @Getter
+    @JoinColumn(name="user_id")
     private List<HangeulbotChild> hangeulbotChildren;
 
 

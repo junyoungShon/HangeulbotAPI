@@ -8,6 +8,102 @@
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="hangeulbotAPI"/>
+      <table id="2" parent="1" name="hangeulbot_child"/>
+      <table id="3" parent="1" name="hangeulbot_device"/>
+      <table id="4" parent="1" name="hangeulbot_user"/>
+      <column id="5" parent="2" name="idx">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="6" parent="2" name="child_birth">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="7" parent="2" name="child_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="8" parent="2" name="child_num">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="9" parent="2" name="child_photo">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="10" parent="2" name="user_id">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="11" parent="2" name="FK_78s6byjgj9n43p86gfbrsx1q3">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="12" parent="2" name="PRIMARY">
+        <columns>idx</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="13" parent="2" name="FK_78s6byjgj9n43p86gfbrsx1q3">
+        <columns>user_id</columns>
+        <ref-key>~.hangeulbot_user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="14" parent="3" name="device_id">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="15" parent="3" name="device_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="16" parent="3" name="idx">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="17" parent="3" name="user_id">
+        <data-type>varchar(30)</data-type>
+      </column>
+      <index id="18" parent="3" name="FK_5twinyfseu95e7klj9wjcsgpm">
+        <columns>user_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="19" parent="3" name="PRIMARY">
+        <columns>device_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="20" parent="3" name="FK_5twinyfseu95e7klj9wjcsgpm">
+        <columns>user_id</columns>
+        <ref-key>~.hangeulbot_user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="21" parent="4" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="22" parent="4" name="idx">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="23" parent="4" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="24" parent="4" name="phone_number">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="25" parent="4" name="device_id">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <index id="26" parent="4" name="FK_mc7jp8a5u6bagja4pf0itm42u">
+        <columns>device_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="27" parent="4" name="PRIMARY">
+        <columns>user_id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="28" parent="4" name="FK_mc7jp8a5u6bagja4pf0itm42u">
+        <columns>device_id</columns>
+        <ref-key>~.hangeulbot_device.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
     </database-model>
   </data-source>
 </component>
