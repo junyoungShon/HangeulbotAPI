@@ -1,27 +1,38 @@
 package com.hangeulbot.vo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jyson on 2016. 7. 6..
  */
 @Entity
 @ToString(callSuper=true, includeFieldNames=true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,property = "@idx")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class HangeulbotChild {
 
-    @Id
-    @Column(name = "idx")
+    @Column(name = "child_idx", length = 11)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter
     @Getter
-    private int idx;
+    private int childIdx;
 
-    @Column(name="child_name")
+    @Id
+    @Column(name="child_id", length = 30)
+    @Setter
+    @Getter
+    private String childId;
+
+    @Column(name="child_name", length = 30)
     @Setter
     @Getter
     private String childName;
@@ -31,20 +42,32 @@ public class HangeulbotChild {
     @Getter
     private Date childBirth;
 
-    @Column(name="child_num")
+    @Column(name="child_num", length = 1)
     @Setter
     @Getter
     private int childNum;
 
-    @Column
+    @Column(name="child_exp", length = 11)
+    @Setter
+    @Getter
+    private int childExp;
+
+    @Column(name="child_photo", length = 50)
     @Setter
     @Getter
     private String childPhoto;
+
+    @Column(name="child_gender", length = 1)
+    @Setter
+    @Getter
+    private int childGender;
 
     @Setter
     @Getter
     @Column(name="user_id")
     private String userId;
+
+   
 
     public HangeulbotChild() {}
 

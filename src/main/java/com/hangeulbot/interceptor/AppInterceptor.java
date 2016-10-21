@@ -25,9 +25,9 @@ public class AppInterceptor extends HandlerInterceptorAdapter{
         System.out.println("AppInterceptor.preHandle : "+req.getRequestURI());
         String userRequestUri = req.getRequestURI();
 
-        if(userRequestUri.equals("/userInfo")||userRequestUri.startsWith("/userInfoByDeviceId")||
+        /*if(userRequestUri.equals("/userInfo")||userRequestUri.startsWith("/userInfoByDeviceId")||
                 userRequestUri.equals("/error")||userRequestUri.startsWith("/isDuplicated")||
-                userRequestUri.equals("/deviceInfoAndUserInfo")){
+                userRequestUri.equals("/deviceInfoAndUserInfo")||userRequestUri.startsWith("/childImage")){
             return flag;
         }else{
             final HttpServletRequest request = (HttpServletRequest) req;
@@ -55,7 +55,7 @@ public class AppInterceptor extends HandlerInterceptorAdapter{
                 throw new ServletException("Invalid token.");
             }
 
-        }
+        }*/
         return flag;
 	}
 }

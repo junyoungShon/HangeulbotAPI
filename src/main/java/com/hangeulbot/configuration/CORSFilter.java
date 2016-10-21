@@ -20,12 +20,13 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        System.out.println("CORS Filter옴");
+        String userRequestUri = servletRequest.getContentType();
+        System.out.println("CORS Filter옴"+userRequestUri);
         filterChain.doFilter(servletRequest, servletResponse);
     }
  
     @Override
     public void destroy() {
- 
+
     }
 }

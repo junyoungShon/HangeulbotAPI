@@ -1,16 +1,23 @@
 package com.hangeulbot.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hangeulbot.interceptor.AppInterceptor;
+import com.hangeulbot.utils.FileUtil;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.net.UnknownHostException;
+import java.util.List;
 
 /**
  * Created by jyson on 2016. 7. 4..
@@ -54,4 +61,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
+
+
 }

@@ -3,10 +3,13 @@ package com.hangeulbot;
 import com.hangeulbot.service.APIService;
 import com.hangeulbot.vo.HangeulbotDevice;
 import com.hangeulbot.vo.HangeulbotUser;
+import com.hangeulbot.vo.HangeulbotUserWordLog;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +26,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,47 +34,16 @@ import java.io.IOException;
 @WebAppConfiguration
 public class HangeulbotApiApplicationTests {
 
-
+	// Define the logger object for this class
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Qualifier("APIServiceImpl")
 	@Autowired
 	private APIService apiService;
 
-
-	private HttpServlet httpServlet;
-
-	@Before
-	public void setUp(){
-		httpServlet = new HttpServlet() {
-		};
-	}
-
 	@Test
 	public void contextLoads() throws IOException {
 		System.out.println("여긴오냐");
-		/*try {
-			HangeulbotUser hangeulbotUser = new HangeulbotUser();
-			HangeulbotDevice hangeulbotDevice = new HangeulbotDevice();
-			hangeulbotUser.setUserId("imvestt@hanmail.net");
-			hangeulbotUser.setPassword("1234");
-			hangeulbotUser.setPhoneNumber("01026789441");
-			hangeulbotDevice.setDeviceId("22:22:22:22");
-			hangeulbotDevice.setDeviceName("똘기떵이의 한글봇");
-			hangeulbotDevice.setHangeulbotUser(hangeulbotUser);
-
-
-			hangeulbotUser.setHangeulbotDevice(hangeulbotDevice);
-
-			System.out.println("세이브 메서드 결과 " + apiService.putHangeulbotDeviceInfoAndHangeulbotUserInfo(hangeulbotDevice));
-
-			System.out.println("테스트 결과"+apiService.isDuplicatedByEmailId("imvestt@hanmail.net"));
-
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		HangeulbotDevice hangeulbotDevice = new HangeulbotDevice();
-		hangeulbotDevice.setDeviceId("22:22:22:22");
-		//apiService.getUserInfoByDeviceId(hangeulbotDevice);
+		apiService.getWordListForDefaultWordGame("imvestt@hanmail.net_0","");
 	}
 
 

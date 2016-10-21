@@ -1,6 +1,6 @@
 package com.hangeulbot.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,32 +14,39 @@ import javax.persistence.*;
  */
 @Entity
 @ToString(callSuper=true, includeFieldNames=true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class,property = "@idx")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class HangeulbotDevice {
 
 
-    @Column(name="idx")
+    @Column(name="device_idx", length=7)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter
     @Getter
-    private int idx;
+    private int deviceIdx;
 
     @Id
-    @Column(name="device_id")
+    @Column(name="device_id", length = 30)
     @Setter
     @Getter
-    private String deviceId;
+    private String deviceId = "hangeulbot_"+deviceIdx;
 
-    @Column(name="device_name")
+    @Column(name="device_address", length=30)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter
+    @Getter
+    private String deviceAddress;
+
+    @Column(name="device_name", length = 30)
     @Setter
     @Getter
     private String deviceName;
 
 
-    @OneToOne
     @Setter
     @Getter
-    @JoinColumn(name="user_id")
-    private HangeulbotUser hangeulbotUser;
+    @Column(name="user_id",length = 30)
+    private String userId = "notRegistered";
 
     public HangeulbotDevice() {}
 
